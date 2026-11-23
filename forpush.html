@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#202b2c">
+<title>Congratulations - Exclusive Bonus Prize</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #202b2c;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    color: #263238;
+}
+
+/* MAIN POPUP */
+
+.popup {
+    width: 100%;
+    max-width: 910px;
+    height: calc(100vh - 16px);
+    height: calc(100dvh - 16px);
+    max-height: 950px;
+    min-height: 0;
+    background: #fff;
+    border-radius: 45px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 55px rgba(0,0,0,0.25);
+}
+
+/* HEADER */
+
+.header {
+    flex: 0 0 29%;
+    min-height: 0;
+    background: radial-gradient(
+        circle at 50% 35%,
+        #50bf00 0%,
+        #009d65 40%,
+        #008b70 100%
+    );
+    color: white;
+    text-align: center;
+    padding: 8px 12px 35px;
+    position: relative;
+    clip-path: ellipse(110% 100% at 50% 0%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.trophy {
+    font-size: clamp(45px, 12vh, 105px);
+    line-height: 1.1;
+    filter: drop-shadow(0 5px 3px rgba(0,0,0,.2));
+}
+
+.header h1 {
+    font-size: clamp(20px, 4.5vh, 43px);
+    color: #ffdf00;
+    font-weight: 900;
+    margin-top: 8px;
+    line-height: 1.15;
+}
+
+.header p {
+    font-size: clamp(13px, 2.8vh, 25px);
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: clamp(34px, 7vh, 55px);
+    height: clamp(34px, 7vh, 55px);
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.23);
+    color: white;
+    font-size: clamp(23px, 5vh, 36px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 5;
+}
+
+/* MAIN CONTENT */
+
+.content {
+    flex: 1;
+    min-height: 0;
+    margin-top: -2px;
+    padding: 10px clamp(12px, 4vw, 40px) 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: clamp(5px, 1.2vh, 12px);
+    text-align: center;
+    background: #fff;
+}
+
+/* COUNTDOWN */
+
+.timer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: clamp(7px, 1.5vh, 13px) 5px;
+    background: #ffe4e7;
+    border: 2px solid #f7aeb9;
+    border-radius: 14px;
+    color: #bd182b;
+    font-size: clamp(14px, 2.6vh, 25px);
+    font-weight: bold;
+}
+
+.timer .dot {
+    color: #f39ba6;
+    margin-right: 8px;
+}
+
+.timer .clock {
+    margin-right: 5px;
+}
+
+/* PRIZE CARD */
+
+.prize {
+    flex-shrink: 0;
+    background: radial-gradient(
+        circle at 50% 30%,
+        #064a31,
+        #003d2d 65%,
+        #004b37
+    );
+    border-radius: 24px;
+    padding: clamp(12px, 2.5vh, 24px) 8px;
+    color: white;
+    border-bottom: 5px solid #e8d500;
+}
+
+.prize-label {
+    font-size: clamp(10px, 1.8vh, 17px);
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #e2e7e2;
+    margin-bottom: 5px;
+}
+
+.amount {
+    color: #ffdf00;
+    font-size: clamp(43px, 9.5vh, 88px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.additional {
+    font-size: clamp(12px, 2.2vh, 21px);
+    font-weight: bold;
+    color: #d9e4df;
+    margin-top: 4px;
+}
+
+/* DESCRIPTION */
+
+.description {
+    flex-shrink: 0;
+    font-size: clamp(12px, 2.3vh, 22px);
+    line-height: 1.45;
+    color: #303b43;
+}
+
+.description strong {
+    color: #087b51;
+}
+
+/* CLAIM BUTTON */
+
+.claim-button {
+    flex-shrink: 0;
+    width: 100%;
+    min-height: clamp(65px, 12vh, 115px);
+    padding: 8px 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(110deg, #00b67d, #007d57);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 20px);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 14px 35px rgba(0,157,105,.35);
+    transition: transform .2s ease;
+}
+
+.claim-button:hover {
+    transform: translateY(-2px);
+}
+
+.hand {
+    width: clamp(42px, 8vh, 70px);
+    height: clamp(42px, 8vh, 70px);
+    min-width: clamp(42px, 8vh, 70px);
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.45);
+    background: rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 4vh, 32px);
+}
+
+.claim-text {
+    text-align: left;
+    min-width: 0;
+}
+
+.claim-text h2 {
+    font-size: clamp(14px, 3.5vh, 31px);
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.claim-text p {
+    font-size: clamp(10px, 2.1vh, 19px);
+    font-weight: bold;
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+/* FOOTER */
+
+.footer {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(8px, 2vw, 20px);
+    color: #59666c;
+    font-size: clamp(10px, 2vh, 18px);
+    font-weight: bold;
+}
+
+.footer span {
+    white-space: nowrap;
+}
+
+/* SHORT SCREEN ADJUSTMENT */
+
+@media (max-height: 650px) {
+    .header {
+        flex-basis: 25%;
+    }
+
+    .content {
+        gap: 4px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .prize {
+        padding: 8px;
+    }
+
+    .description {
+        line-height: 1.25;
+    }
+
+    .claim-button {
+        min-height: 58px;
+    }
+
+    .footer {
+        font-size: 10px;
+    }
+}
+
+/* SMALL MOBILE SCREEN */
+
+@media (max-width: 360px) {
+    .popup {
+        border-radius: 28px;
+    }
+
+    .content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .claim-button {
+        gap: 7px;
+        padding: 7px;
+    }
+
+    .claim-text h2 {
+        font-size: clamp(13px, 3.8vw, 17px);
+    }
+
+    .claim-text p {
+        font-size: 10px;
+    }
+
+    .footer {
+        gap: 7px;
+        font-size: 9px;
+    }
+
+    .prize-label {
+        letter-spacing: 2px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="popup" id="popup">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <button class="close"
+                onclick="closePopup()"
+                aria-label="Close">
+            ×
+        </button>
+
+        <div class="trophy">🏆</div>
+
+        <h1>CONGRATULATIONS!</h1>
+
+        <p>You've been selected in Nigeria 🇳🇬!</p>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+        <!-- COUNTDOWN -->
+
+        <div class="timer">
+
+            <span class="dot">●</span>
+
+            <span class="clock">⏱</span>
+
+            Offer expires in:
+
+            <span id="countdown">09:41</span>
+
+        </div>
+
+        <!-- PRIZE CARD -->
+
+        <div class="prize">
+
+            <div class="prize-label">
+                YOUR EXCLUSIVE BONUS PRIZE
+            </div>
+
+            <div class="amount">
+                ₦50,000
+            </div>
+
+            <div class="additional">
+                + Additional Rewards &amp; Free Bonuses
+            </div>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+
+        <div class="description">
+
+            Your device was selected from
+            <strong>84,291 Nigerian</strong> users.
+
+            <br>
+
+            Only <strong>3 slots remain</strong> — tap now before it expires!
+
+        </div>
+
+        <!-- CLAIM BUTTON -->
+
+        <a href="https://wrrit.bemobtrcks.com/click"
+           class="claim-button">
+
+            <div class="hand">👆🏻</div>
+
+            <div class="claim-text">
+
+                <h2>🎁 CLAIM MY ₦50,000 NOW</h2>
+
+                <p>
+                    Tap here &nbsp;•&nbsp; Free &nbsp;•&nbsp;
+                    Instant &nbsp;•&nbsp; Secure
+                </p>
+
+            </div>
+
+        </a>
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <span>🔒 Secure</span>
+
+            <span>🆓 Free</span>
+
+            <span>🇳🇬 NG Only</span>
+
+            <span>⚡ Instant</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* COUNTDOWN TIMER */
+
+let remainingSeconds = 9 * 60 + 41;
+
+const countdownElement = document.getElementById("countdown");
+
+function updateCountdown() {
+
+    let minutes = Math.floor(remainingSeconds / 60);
+
+    let seconds = remainingSeconds % 60;
+
+    countdownElement.textContent =
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+
+    if (remainingSeconds > 0) {
+        remainingSeconds--;
+    } else {
+        clearInterval(timerInterval);
+    }
+
+}
+
+updateCountdown();
+
+const timerInterval = setInterval(updateCountdown, 1000);
+
+
+/* CLOSE POPUP */
+
+function closePopup() {
+
+    document.getElementById("popup").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
